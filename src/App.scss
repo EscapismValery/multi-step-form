@@ -1,7 +1,87 @@
 @import "./styles/_zero";
 @import "./styles/fonts";
 @import "./styles/mixins";
+@import "./styles/_vars";
 @import "./styles/mobile";
 
-
-
+.App {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background-color: #EEF5FF;
+}
+.cardform {
+	display: flex;
+	width: 940px;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 13px;
+}
+.sidebar {
+	width: 275px;
+	height: 568px;
+	padding: 30px;
+	background: url("./images/bg-sidebar-desktop.svg") no-repeat;
+}
+.step {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 30px;
+	color: #fff;
+	&__number {
+		width: 33px;
+		height: 33px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50px;
+		background-color: transparent;
+		border: 1px solid #fff;
+	}
+	&.active &__number {
+		background-color: #BFE2FD;
+		border: 1px solid #BFE2FD;
+		color: #000;
+	}
+	&__text {	
+		height: 33px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		text-transform: uppercase;
+		font-size: 0.9em;
+		line-height: 1;
+	}
+	&__id {
+		font-family: "Ubuntu-Regular";
+		font-weight: 100;
+		color: #9699AB;
+	}
+	&__title {
+		letter-spacing: 1px;
+	}
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 450px;
+	margin: 30px auto;
+	&__title {
+		color:#03295A;
+	}
+}
+.button {
+	padding: 20px 50px;
+	border-radius: 10px;
+	color: #fff;
+}
+.next-button {
+	background-color: #03295A;
+}
+.confirm-button {
+	background-color: #483EFF;
+}
