@@ -65,11 +65,33 @@
 		letter-spacing: 1px;
 	}
 }
+// ------------------------ FORM ------------------------------
 .form {
 	display: flex;
 	flex-direction: column;
 	width: 450px;
 	margin: 30px auto;
+	&-finish {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		&__title {
+			margin-top: 15px;
+			font-family: Ubuntu-Bold;
+			font-size: 32px;
+		}
+		&__text {
+			text-align: center;
+			color: #9699AB;
+			font-family: Ubuntu-Regular;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+	}
 	&__title {
 		color:#03295A;
 	}
