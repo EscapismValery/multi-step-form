@@ -15,9 +15,10 @@ const Result = () => {
 	}
 	return (
 		<CardForm active={4}>
-			<MyForm>
-				<h2>Finishing up</h2>
-				<p>Double-check everything looks OK before confirming.</p>
+			<MyForm
+				title={"Finishing up"}
+				description={"Double-check everything looks OK before confirming."}
+			>
 				<div className="buttons">
 					<PrevButton onClick={PrevStep}>Go Back</PrevButton>
 					<NextButton classes="confirm-button" onClick={NextStep}>Confirm</NextButton>

@@ -12,10 +12,14 @@ const Step1 = () => {
 	}
 	return (
 		<CardForm active={1}>
-			<MyForm>
-				<h2 className='form__title'>Personal info</h2>
-				<p className='form__text'>Please provide your name, email address, and phone number.</p>
-				<NextButton classes="next-button" onClick={NextStep}>Next Step</NextButton>
+			<MyForm
+				title={"Personal info"}
+				description={"Please provide your name, email address, and phone number."}
+			>
+				<div className="buttons">
+					<button disabled style={{ opacity: "0" }}></button>
+					<NextButton classes="next-button" onClick={NextStep}>Next Step</NextButton>
+				</div>
 			</MyForm>
 		</CardForm>
 	)
