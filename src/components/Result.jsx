@@ -15,15 +15,18 @@ const Result = () => {
 	}
 	return (
 		<CardForm active={4}>
-			<MyForm
-				title={"Finishing up"}
-				description={"Double-check everything looks OK before confirming."}
-			>
+			<div className="cardform__container">
+				<MyForm
+					title={"Finishing up"}
+					description={"Double-check everything looks OK before confirming."}
+				>
+
+				</MyForm>
 				<div className="buttons">
 					<PrevButton onClick={PrevStep}>Go Back</PrevButton>
 					<NextButton classes="confirm-button" onClick={NextStep}>Confirm</NextButton>
 				</div>
-			</MyForm>
+			</div>
 		</CardForm>
 	)
 }

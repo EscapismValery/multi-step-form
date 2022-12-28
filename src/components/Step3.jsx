@@ -15,15 +15,18 @@ const Step3 = () => {
 	}
 	return (
 		<CardForm active={3}>
-			<MyForm
-				title={"Pick add-ons"}
-				description={"Add-ons help enhance your gaming experience."}
-			>
+			<div className="cardform__container">
+				<MyForm
+					title={"Pick add-ons"}
+					description={"Add-ons help enhance your gaming experience."}
+				>
+
+				</MyForm>
 				<div className="buttons">
 					<PrevButton onClick={PrevStep}>Go Back</PrevButton>
 					<NextButton classes="next-button" onClick={NextStep}>Next Step</NextButton>
 				</div>
-			</MyForm>
+			</div>
 		</CardForm>
 	)
 }

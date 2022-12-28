@@ -15,15 +15,18 @@ const Step2 = () => {
 	}
 	return (
 		<CardForm active={2}>
-			<MyForm
-				title={"Select your plan"}
-				description={"You have the option of monthly or yearly billing."}
-			>
+			<div className="cardform__container">
+				<MyForm
+					title={"Select your plan"}
+					description={"You have the option of monthly or yearly billing."}
+				>
+
+				</MyForm>
 				<div className="buttons">
 					<PrevButton onClick={PrevStep}>Go Back</PrevButton>
 					<NextButton classes="next-button" onClick={NextStep}>Next Step</NextButton>
 				</div>
-			</MyForm>
+			</div>
 		</CardForm>
 	)
 }
