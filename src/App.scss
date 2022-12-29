@@ -3,7 +3,7 @@
 @import "./styles/mixins";
 @import "./styles/_vars";
 @import "./styles/mobile";
-
+/* ----------- Главный контейнер с фоном ----------- */
 .App {
 	display: flex;
 	justify-content: center;
@@ -13,6 +13,7 @@
 	overflow: hidden;
 	background-color: #EEF5FF;
 }
+/* ----------- Контейнер со всем содержимым ----------- */
 .cardform {
 	display: flex;
 	width: 940px;
@@ -27,6 +28,7 @@
 		margin: 20px auto;
 	}
 }
+/* ----------- Контейнер боковой навигации ----------- */
 .sidebar {
 	width: 275px;
 	height: 568px;
@@ -72,23 +74,11 @@
 		letter-spacing: 1px;
 	}
 }
-// ------------------------ FORM ------------------------------
+/* ----------- Контейнер содержимого любого шага ----------- */
 .form {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	&-finish {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 20px;
-		&__text {
-			text-align: center;
-		}
-	}
 	&__title {
 		margin-top: 15px;
 		margin-bottom: 10px;
@@ -101,13 +91,14 @@
 		font-family: Ubuntu-Regular;
 		font-size: 16px;
 		line-height: 1.5;
+		margin-bottom: 30px;
 	}
 	&__content {
 		display: flex;
 		flex-direction: column;
-		margin-top: 30px;
 		gap: 25px;
 	}
+	/* --- Стили для label и input на 1 странице --- */
 	&__label {
 		display: flex;
 		flex-direction: column;
@@ -125,7 +116,192 @@
 	&__input::placeholder {
 		color: #9699AB;
 	}
+	/* --- Стили для плана и цен на 2 странице --- */
+	&__plan {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 1fr;
+		grid-column-gap: 18px;
+		& .plan-form {
+			&__item {
+				padding: 100px 15px 15px 15px;
+				border: 1px solid #DBDBDD;
+				background-color: #fff;
+				border-radius: 10px;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				transition: all .2s ease;
+			}
+			&__item:hover {
+				border: 1px solid #524E98;
+			}
+			&__item:nth-child(1) {
+				background: url("./images/icon-arcade.svg") no-repeat 15px 15px;
+			}
+			&__item:nth-child(2) {
+				background: url("./images/icon-advanced.svg") no-repeat 15px 15px;
+			}
+			&__item:nth-child(3) {
+				background: url("./images/icon-pro.svg") no-repeat 15px 15px;
+			}
+			&__radio {
+				width: 0;
+				height: 0;
+				position: absolute;
+				opacity: 0;
+			}
+			&__radio:checked + .plan-form__item {
+				border: 1px solid #524E98;
+				background-color: #F8F9FE;
+			}
+			&__title {
+				color: #03295A;
+				font-family: Ubuntu-Bold;
+				font-size: 16px;
+			}
+			&__price {
+				color: #9699AB;
+				font-size: 14px;
+			}
+			&__free {
+				color: #03295A;
+				font-size: 12px;
+				display: none;
+			}
+			&__free.active {
+				display: block;
+			}
+		}
+	}
+	&__plan-period {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+		width: 100%;
+		margin-top: 30px;
+		padding: 15px;
+		background-color: #F8F9FE;
+		border-radius: 10px;
+		& .plan-period {
+			&__title {
+				background: transparent;
+				color: #9699AB;
+				transition: color .2s ease;
+			}
+			&__title.active {
+				color: #03295A;
+			}
+			&__switch {
+				width: 40px;
+				height: 20px;
+				background-color: #03295A;
+				border-radius: 100px;
+				position: relative;
+			}
+			&__switch:before {
+				content: "";
+				position: absolute;
+				top: 4px;
+				left: 4px;
+				width: 12px;
+				height: 12px;
+				background-color: #fff;
+				border-radius: 100px;
+				transition: left .2s ease;
+			}
+			&__switch.active:before {
+				left: 24px;
+			}
+		}
+	}
+	/* --- Стили для чекбоксов на 3 странице --- */
+	&__addons {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		& .addons-form {
+			&__item {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+				border: 1px solid #DBDADF;
+				border-radius: 10px;
+				height: 80px;
+				cursor: pointer;
+				transition: all .2s ease;
+			}
+			&__item:hover {
+				border: 1px solid #524E98;
+			}
+			&__item.active {
+				border: 1px solid #524E98;
+				background-color: #F8F9FE;
+			}
+			&__item-container {
+				display: flex;
+				justify-content: space-between;
+				height: 100%;
+			}
+			&__mark {
+				width: 20px;
+				height: 20px;
+				background: transparent;
+				border: 1px solid #E1E0E5;
+				border-radius: 4px;
+				margin-right: 20px;
+				align-self: center;
+			}
+			&__text {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 100%;
+			}
+			&__title {
+				color: #03295A;
+				font-family: Ubuntu-Bold;
+				font-size: 16px;
+			}
+			&__desc {
+				color: #9699AB;
+				font-size: 14px;
+			}
+			&__price {
+				color: #524E9B;
+			}
+			&__check {
+				width: 0;
+				height: 0;
+				position: absolute;
+				opacity: 0;
+			}
+			&__check:checked + .addons-form__mark {
+				background: url("./images/icon-checkmark.svg") no-repeat 50% 50%;
+				background-color: #4C41FF;
+				border: 1px solid #4C41FF;
+			}
+		}
+	}
+
+	/* --- Стили страницы успешной отправки формы --- */
+	&-finish {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		&__text {
+			text-align: center;
+		}
+	}
 }
+
+/* ----------- Стили общих кнопок на каждом шаге ----------- */
 .buttons {
 	width: 100%;
 	display: flex;
