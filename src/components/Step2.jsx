@@ -18,6 +18,7 @@ const Step2 = () => {
 	}
 
 	const ShowPeriod = (e) => {
+		e.preventDefault();
 		const monthly = document.querySelector('.plan-period-monthly');
 		const yearly = document.querySelector('.plan-period-yearly');
 		const periodSwitch = document.querySelector('.plan-period__switch');

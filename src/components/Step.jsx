@@ -2,7 +2,7 @@ import React from 'react';
 
 const Step = ({ stepId, title, active }) => {
 	return (
-		<div className={active && "step active" || "step"}>
+		<div className={active ? "step active" : "step"}>
 			<div className="step__number">
 				{stepId}
 			</div>

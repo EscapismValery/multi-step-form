@@ -14,9 +14,8 @@ const Step3 = () => {
 		navigate("/step2");
 	}
 
-	const ShowActive = (e, num) => {
-		let addonsItems = document.querySelectorAll('.addons-form__item');
-
+	const ShowActive = (num) => {
+		const addonsItems = document.querySelectorAll('.addons-form__item');
 		addonsItems[num].classList.toggle('active');
 	}
 	return (
@@ -28,7 +27,7 @@ const Step3 = () => {
 				>
 					<div className="form__addons addons-form">
 						<label>
-							<div className="addons-form__item" onChange={e => ShowActive(e, 0)}>
+							<div className="addons-form__item" onChange={e => ShowActive(0)}>
 								<div className='addons-form__item-container'>
 									<input type="checkbox" name='addons' className='addons-form__check' />
 									<span className='addons-form__mark'></span>
@@ -41,7 +40,7 @@ const Step3 = () => {
 							</div>
 						</label>
 						<label>
-							<div className="addons-form__item" onChange={e => ShowActive(e, 1)}>
+							<div className="addons-form__item" onChange={e => ShowActive(1)}>
 								<div className='addons-form__item-container'>
 									<input type="checkbox" name='addons' className='addons-form__check' />
 									<span className='addons-form__mark'></span>
@@ -54,7 +53,7 @@ const Step3 = () => {
 							</div>
 						</label>
 						<label>
-							<div className="addons-form__item" onChange={e => ShowActive(e, 2)}>
+							<div className="addons-form__item" onChange={e => ShowActive(2)}>
 								<div className='addons-form__item-container'>
 									<input type="checkbox" name='addons' className='addons-form__check' />
 									<span className='addons-form__mark'></span>

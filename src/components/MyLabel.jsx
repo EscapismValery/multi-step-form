@@ -1,11 +1,13 @@
 import React from 'react';
-import MyInput from './MyInput';
 
-const MyLabel = ({ title, placeholder, name, type }) => {
+const MyLabel = ({ children, ...props }) => {
 	return (
-		<label htmlFor={name} className="form__label">
-			{title}
-			<MyInput type={type} name={name} id={name} placeholder={placeholder} />
+		<label htmlFor={props.name} className="form__label">
+			<div className="form__label-text">
+				<p className='form__label-title'>{props.title}</p>
+				<p className='form__label-error'>{props.error}</p>
+			</div>
+			{children}
 		</label>
 	)
 }
