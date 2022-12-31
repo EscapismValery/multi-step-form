@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useData } from '../DataContext';
 import CardForm from './CardForm';
 import MyForm from './MyForm';
 import NextButton from './NextButton';
@@ -7,8 +8,12 @@ import PrevButton from './PrevButton';
 
 const Step3 = () => {
 	const navigate = useNavigate();
+
+	const { data, setValues } = useData();
+	console.log(data);
 	const NextStep = () => {
 		navigate("/result");
+		setValues(data);
 	}
 	const PrevStep = () => {
 		navigate("/step2");

@@ -85,7 +85,6 @@
 	&__container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		height: 100%;
 	}
 	&__title {
@@ -133,6 +132,9 @@
 		font-size: 16px;
 		color: #03295A;
 	}
+	&__input:focus {
+		border: 1px solid #554F95;
+	}
 	&__input::placeholder {
 		color: #9699AB;
 	}
@@ -156,18 +158,18 @@
 				flex-direction: column;
 				gap: 10px;
 				transition: all .2s ease;
+				&-arcade {
+					background: url("./images/icon-arcade.svg") no-repeat 15px 15px;
+				}
+				&-advanced {
+					background: url("./images/icon-advanced.svg") no-repeat 15px 15px;
+				}
+				&-pro {
+					background: url("./images/icon-pro.svg") no-repeat 15px 15px;
+				}
 			}
 			&__item:hover {
 				border: 1px solid #524E98;
-			}
-			&__item:nth-child(1) {
-				background: url("./images/icon-arcade.svg") no-repeat 15px 15px;
-			}
-			&__item:nth-child(2) {
-				background: url("./images/icon-advanced.svg") no-repeat 15px 15px;
-			}
-			&__item:nth-child(3) {
-				background: url("./images/icon-pro.svg") no-repeat 15px 15px;
 			}
 			&__radio {
 				width: 0;
@@ -213,7 +215,16 @@
 				color: #9699AB;
 				transition: color .2s ease;
 			}
-			&__title.active {
+			// &__title.active {
+			// 	color: #03295A;
+			// }
+			&__radio {
+				width: 0;
+				height: 0;
+				position: absolute;
+				opacity: 0;
+			}
+			&__radio:checked + .plan-period__title {
 				color: #03295A;
 			}
 			&__switch {
