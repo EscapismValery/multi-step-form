@@ -76,7 +76,7 @@ const Step1 = () => {
 									id={"formName"}
 									type={"text"}
 									placeholder={"e.g. Stephen King"}
-									error={!!errors.formName}
+									error={!errors.formName}
 									className={errors?.formName ? "form__input form__input-error" : "form__input"}
 								/>
 							</MyLabel>

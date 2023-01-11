@@ -10,9 +10,11 @@ import PrevButton from './PrevButton';
 const Step2 = () => {
 	const navigate = useNavigate();
 
-	const [periodPrice, setPeriodPrice] = useState([9, 12, 15]);
-
 	const { data, setValues } = useData();
+
+	const [periodPrice, setPeriodPrice] = useState([9, 12, 15]);
+	const [periodTime, setPeriodTime] = useState("mo");
+
 	const {
 		register,
 		handleSubmit,
@@ -24,7 +26,7 @@ const Step2 = () => {
 		navigate("/step3");
 		setValues(data);
 	}
-
+	console.log(data);
 	const PrevStep = () => {
 		navigate("/");
 	}
@@ -42,6 +44,7 @@ const Step2 = () => {
 					freeMonth[i].classList.remove('active');
 				}
 				setPeriodPrice([9, 12, 15]);
+				setPeriodTime("mo");
 				break;
 			case 'plan-period__title plan-period-yearly':
 				periodSwitch.classList.add('active');
@@ -49,6 +52,7 @@ const Step2 = () => {
 					freeMonth[i].classList.add('active');
 				}
 				setPeriodPrice([90, 120, 150]);
+				setPeriodTime("yr");
 				break;
 			case 'plan-period__switch':
 				monthly.checked = false;
@@ -58,6 +62,7 @@ const Step2 = () => {
 					freeMonth[i].classList.add('active');
 				}
 				setPeriodPrice([90, 120, 150]);
+				setPeriodTime("yr");
 				break;
 			case 'plan-period__switch active':
 				monthly.checked = true;
@@ -67,6 +72,7 @@ const Step2 = () => {
 					freeMonth[i].classList.remove('active');
 				}
 				setPeriodPrice([9, 12, 15]);
+				setPeriodTime("mo");
 				break;
 			default:
 				break;
@@ -88,13 +94,13 @@ const Step2 = () => {
 									{...register('plan')}
 									type="radio"
 									name='plan'
-									value={"Arcade " + periodPrice[0]}
 									className='plan-form__radio'
-									defaultChecked
+									defaultValue="Arcade"
+									defaultChecked={data.plan ? false : true}
 								/>
 								<div className="plan-form__item plan-form__item-arcade">
 									<h4 className='plan-form__title'>Arcade</h4>
-									<p className="plan-form__price">${periodPrice[0]}/mo</p>
+									<p className="plan-form__price">${periodPrice[0]}/{periodTime}</p>
 									<p className="plan-form__free">2 months free</p>
 								</div>
 							</label>
@@ -103,12 +109,12 @@ const Step2 = () => {
 									{...register('plan')}
 									type="radio"
 									name='plan'
-									value={"Advanced " + periodPrice[1]}
 									className='plan-form__radio'
+									defaultValue="Advanced"
 								/>
 								<div className="plan-form__item plan-form__item-advanced">
 									<h4 className='plan-form__title'>Advanced</h4>
-									<p className="plan-form__price">${periodPrice[1]}/mo</p>
+									<p className="plan-form__price">${periodPrice[1]}/{periodTime}</p>
 									<p className="plan-form__free">2 months free</p>
 								</div>
 							</label>
@@ -117,12 +123,12 @@ const Step2 = () => {
 									{...register('plan')}
 									type="radio"
 									name='plan'
-									value={"Pro " + periodPrice[2]}
 									className='plan-form__radio'
+									defaultValue="Pro"
 								/>
 								<div className="plan-form__item plan-form__item-pro">
 									<h4 className='plan-form__title'>Pro</h4>
-									<p className="plan-form__price">${periodPrice[2]}/mo</p>
+									<p className="plan-form__price">${periodPrice[2]}/{periodTime}</p>
 									<p className="plan-form__free">2 months free</p>
 								</div>
 							</label>
@@ -135,7 +141,7 @@ const Step2 = () => {
 									name="period"
 									value="Monthly"
 									className="plan-period__radio plan-period__radio-monthly"
-									defaultChecked
+									defaultChecked={data.plan ? false : true}
 								/>
 								<p className='plan-period__title plan-period-monthly'>Monthly</p>
 							</label>
@@ -150,10 +156,6 @@ const Step2 = () => {
 								/>
 								<p className='plan-period__title plan-period-yearly'>Yearly</p>
 							</label>
-
-							{/* <button className='plan-period__title plan-period-monthly active'>Monthly</button>
-							<button className='plan-period__switch'></button>
-							<button className='plan-period__title plan-period-yearly'>Yearly</button> */}
 						</div>
 					</div>
 					<div className="buttons">

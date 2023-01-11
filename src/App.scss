@@ -214,10 +214,8 @@
 				background: transparent;
 				color: #9699AB;
 				transition: color .2s ease;
+				cursor: pointer;
 			}
-			// &__title.active {
-			// 	color: #03295A;
-			// }
 			&__radio {
 				width: 0;
 				height: 0;
@@ -270,10 +268,14 @@
 			&__item:hover {
 				border: 1px solid #524E98;
 			}
-			&__item.active {
+			&__check:checked + .addons-form__item {
 				border: 1px solid #524E98;
 				background-color: #F8F9FE;
 			}
+			// &__item.active {
+			// 	border: 1px solid #524E98;
+			// 	background-color: #F8F9FE;
+			// }
 			&__item-container {
 				display: flex;
 				justify-content: space-between;
@@ -312,7 +314,7 @@
 				position: absolute;
 				opacity: 0;
 			}
-			&__check:checked + .addons-form__mark {
+			&__check:checked ~ .addons-form__item .addons-form__mark {
 				background: url("./images/icon-checkmark.svg") no-repeat 50% 50%;
 				background-color: #4C41FF;
 				border: 1px solid #4C41FF;

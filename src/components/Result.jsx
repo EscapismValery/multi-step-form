@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useData } from '../DataContext';
 import CardForm from './CardForm';
 import MyForm from './MyForm';
 import NextButton from './NextButton';
@@ -7,12 +8,15 @@ import PrevButton from './PrevButton';
 
 const Result = () => {
 	const navigate = useNavigate();
+	const { data } = useData();
+
 	const NextStep = () => {
 		navigate("/finish");
 	}
 	const PrevStep = () => {
 		navigate("/step3");
 	}
+	console.log(data)
 	return (
 		<CardForm active={4}>
 			<div className="cardform__container">
