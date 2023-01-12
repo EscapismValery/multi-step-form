@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -13,72 +13,131 @@ const Step2 = () => {
 	const { data, setValues } = useData();
 
 	const [periodPrice, setPeriodPrice] = useState([9, 12, 15]);
+	const [numberPlan, setNumberPlan] = useState(0);
 	const [periodTime, setPeriodTime] = useState("mo");
 
 	const {
 		register,
 		handleSubmit,
+		watch,
 	} = useForm({
-		defaultValues: { plan: data.plan, period: data.period },
+		defaultValues: {
+			plan: data.plan,
+			period: data.period,
+			periodPrice: data.periodPrice,
+			periodTime: data.periodTime,
+			hasPeriod: data.hasPeriod
+		},
 	});
+
+	const hasPeriod = watch("hasPeriod");
 
 	const NextStep = (data) => {
 		navigate("/step3");
-		setValues(data);
+		if (data.hasPeriod == false) {
+			console.log('standart');
+
+			setValues({
+				plan: data.plan,
+				hasPeriod: data.hasPeriod,
+				period: "Monthly",
+				periodPrice: periodPrice[numberPlan],
+				periodTime: periodTime,
+			});
+		} else {
+			setValues({
+				plan: data.plan,
+				hasPeriod: data.hasPeriod,
+			});
+		}
 	}
-	console.log(data);
+
 	const PrevStep = () => {
 		navigate("/");
 	}
 
-	const ShowPeriod = (e) => {
-		const monthly = document.querySelector('.plan-period__radio-monthly');
-		const yearly = document.querySelector('.plan-period__radio-yearly');
-		const periodSwitch = document.querySelector('.plan-period__switch');
-		const freeMonth = document.querySelectorAll('.plan-form__free');
+	useEffect(() => {
+		return setValues({ periodPrice: periodPrice[numberPlan], periodTime: periodTime })
+	}, [periodPrice]);
 
-		switch (e.target.classList.value) {
-			case 'plan-period__title plan-period-monthly':
-				periodSwitch.classList.remove('active');
-				for (let i = 0; i < freeMonth.length; i++) {
-					freeMonth[i].classList.remove('active');
-				}
-				setPeriodPrice([9, 12, 15]);
-				setPeriodTime("mo");
-				break;
-			case 'plan-period__title plan-period-yearly':
-				periodSwitch.classList.add('active');
-				for (let i = 0; i < freeMonth.length; i++) {
-					freeMonth[i].classList.add('active');
-				}
-				setPeriodPrice([90, 120, 150]);
-				setPeriodTime("yr");
-				break;
-			case 'plan-period__switch':
-				monthly.checked = false;
-				yearly.checked = true;
-				periodSwitch.classList.add('active');
-				for (let i = 0; i < freeMonth.length; i++) {
-					freeMonth[i].classList.add('active');
-				}
-				setPeriodPrice([90, 120, 150]);
-				setPeriodTime("yr");
-				break;
-			case 'plan-period__switch active':
-				monthly.checked = true;
-				yearly.checked = false;
-				periodSwitch.classList.remove('active');
-				for (let i = 0; i < freeMonth.length; i++) {
-					freeMonth[i].classList.remove('active');
-				}
-				setPeriodPrice([9, 12, 15]);
-				setPeriodTime("mo");
-				break;
-			default:
-				break;
+	const ShowMonthly = () => {
+		const monthly = document.querySelector('.plan-period__radio-monthly');
+		const freeMonth = document.querySelectorAll('.plan-form__free');
+		const periodSwitch = document.querySelector('.plan-period__check');
+
+		for (let i = 0; i < freeMonth.length; i++) {
+			freeMonth[i].classList.remove('active');
 		}
+		setPeriodPrice([9, 12, 15]);
+		setPeriodTime("mo");
+		periodSwitch.checked = false;
+		monthly.checked = true;
+		setValues({
+			...data,
+			plan: data.plan,
+			period: "Monthly",
+			// periodPrice: periodPrice[numberPlan],
+			// periodTime: periodTime,
+			hasPeriod: false,
+		});
 	}
 
+	const ShowYearly = () => {
+		const yearly = document.querySelector('.plan-period__radio-yearly');
+		const freeMonth = document.querySelectorAll('.plan-form__free');
+		const periodSwitch = document.querySelector('.plan-period__check');
+
+		for (let i = 0; i < freeMonth.length; i++) {
+			freeMonth[i].classList.add('active');
+		}
+		setPeriodPrice([90, 120, 150]);
+		setPeriodTime("yr");
+		yearly.checked = true;
+		periodSwitch.checked = true;
+		setValues({
+			...data,
+			period: "Yearly",
+			// periodPrice: periodPrice[numberPlan],
+			// periodTime: periodTime,
+			hasPeriod: true,
+		});
+	}
+
+	const ShowCheckbox = () => {
+		const monthly = document.querySelector('.plan-period__radio-monthly');
+		const yearly = document.querySelector('.plan-period__radio-yearly');
+		const freeMonth = document.querySelectorAll('.plan-form__free');
+		const periodSwitch = document.querySelector('.plan-period__check');
+
+		if (periodSwitch.checked) {
+			monthly.checked = false;
+			yearly.checked = true;
+			setPeriodPrice([90, 120, 150]);
+			setPeriodTime("yr");
+			setValues({
+				...data,
+				period: "Yearly",
+				// periodPrice: periodPrice[numberPlan],
+				// periodTime: periodTime,
+				hasPeriod: true,
+			});
+		} else {
+			yearly.checked = false;
+			monthly.checked = true;
+			setPeriodPrice([9, 12, 15]);
+			setPeriodTime("mo");
+			setValues({
+				...data,
+				period: "Monthly",
+				// periodPrice: periodPrice[numberPlan],
+				// periodTime: periodTime,
+				hasPeriod: false,
+			});
+		}
+		for (let i = 0; i < freeMonth.length; i++) {
+			periodSwitch.checked ? freeMonth[i].classList.add('active') : freeMonth[i].classList.remove('active');
+		}
+	}
 	return (
 		<CardForm active={2}>
 			<div className="cardform__container">
@@ -97,6 +156,10 @@ const Step2 = () => {
 									className='plan-form__radio'
 									defaultValue="Arcade"
 									defaultChecked={data.plan ? false : true}
+									onClick={() => {
+										setValues({ periodPrice: periodPrice[0] });
+										setNumberPlan(0);
+									}}
 								/>
 								<div className="plan-form__item plan-form__item-arcade">
 									<h4 className='plan-form__title'>Arcade</h4>
@@ -111,6 +174,10 @@ const Step2 = () => {
 									name='plan'
 									className='plan-form__radio'
 									defaultValue="Advanced"
+									onClick={() => {
+										setValues({ periodPrice: periodPrice[1] });
+										setNumberPlan(1);
+									}}
 								/>
 								<div className="plan-form__item plan-form__item-advanced">
 									<h4 className='plan-form__title'>Advanced</h4>
@@ -125,6 +192,10 @@ const Step2 = () => {
 									name='plan'
 									className='plan-form__radio'
 									defaultValue="Pro"
+									onClick={() => {
+										setValues({ periodPrice: periodPrice[2] });
+										setNumberPlan(2);
+									}}
 								/>
 								<div className="plan-form__item plan-form__item-pro">
 									<h4 className='plan-form__title'>Pro</h4>
@@ -133,7 +204,7 @@ const Step2 = () => {
 								</div>
 							</label>
 						</div>
-						<div className="form__plan-period plan-period" onClick={e => ShowPeriod(e)}>
+						<div className="form__plan-period plan-period">
 							<label>
 								<input
 									{...register('period')}
@@ -141,11 +212,23 @@ const Step2 = () => {
 									name="period"
 									value="Monthly"
 									className="plan-period__radio plan-period__radio-monthly"
-									defaultChecked={data.plan ? false : true}
+									defaultChecked={!hasPeriod}
+									onClick={ShowMonthly}
 								/>
 								<p className='plan-period__title plan-period-monthly'>Monthly</p>
 							</label>
-							<button type="button" className='plan-period__switch'></button>
+							<label>
+								<input
+									{...register('hasPeriod')}
+									type="checkbox"
+									name="hasPeriod"
+									className="plan-period__check"
+									defaultValue={data.hasPeriod}
+									defaultChecked={data.hasPeriod}
+									onClick={ShowCheckbox}
+								/>
+								<div className="plan-period__switch"></div>
+							</label>
 							<label>
 								<input
 									{...register('period')}
@@ -153,6 +236,8 @@ const Step2 = () => {
 									name="period"
 									value="Yearly"
 									className="plan-period__radio plan-period__radio-yearly"
+									defaultChecked={hasPeriod}
+									onClick={ShowYearly}
 								/>
 								<p className='plan-period__title plan-period-yearly'>Yearly</p>
 							</label>

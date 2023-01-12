@@ -215,6 +215,9 @@
 				color: #9699AB;
 				transition: color .2s ease;
 				cursor: pointer;
+				display: flex;
+				height: 100%;
+				align-items: center;
 			}
 			&__radio {
 				width: 0;
@@ -225,12 +228,19 @@
 			&__radio:checked + .plan-period__title {
 				color: #03295A;
 			}
+			&__check {
+				width: 0;
+				height: 0;
+				position: absolute;
+				opacity: 0;
+			}
 			&__switch {
 				width: 40px;
 				height: 20px;
 				background-color: #03295A;
 				border-radius: 100px;
 				position: relative;
+				cursor: pointer;
 			}
 			&__switch:before {
 				content: "";
@@ -243,7 +253,7 @@
 				border-radius: 100px;
 				transition: left .2s ease;
 			}
-			&__switch.active:before {
+			&__check:checked + .plan-period__switch:before {
 				left: 24px;
 			}
 		}
@@ -272,10 +282,6 @@
 				border: 1px solid #524E98;
 				background-color: #F8F9FE;
 			}
-			// &__item.active {
-			// 	border: 1px solid #524E98;
-			// 	background-color: #F8F9FE;
-			// }
 			&__item-container {
 				display: flex;
 				justify-content: space-between;
@@ -318,6 +324,74 @@
 				background: url("./images/icon-checkmark.svg") no-repeat 50% 50%;
 				background-color: #4C41FF;
 				border: 1px solid #4C41FF;
+			}
+		}
+	}
+
+	/* --- Стили для страницы с результатами --- */
+	&__result {
+		& .result-form {
+			display: flex;
+			flex-direction: column;
+			&__data {
+				padding: 25px 20px;
+				background-color: #F8F9FE;
+			}
+			&__plan {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 25px;
+				&-info {
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					gap: 5px;
+				}
+				&-price {
+					color: #052857;
+					font-family: Ubuntu-Bold;
+					font-size: 18px;
+				}
+			}
+			&__title {
+				color: #052857;
+				font-family: Ubuntu-Bold;
+				font-size: 18px;
+			}
+			&__change {
+				color: #9999A3;
+				text-decoration: underline;
+				background: none;
+				font-size: 16px;
+			}
+			&__addons {
+				display: flex;
+				flex-direction: column;
+				gap: 25px;
+				padding-top: 25px;
+				border-top: 1px solid #E7E8ED;
+			}
+			&__addons-item {
+				display: flex;
+				justify-content: space-between;
+			}
+			&__addons-price {
+				color: #052857;
+				font-size: 16px;
+			}
+			&__text {
+				color: #9999A3;
+			}
+			&__total {
+				padding: 25px 20px;
+				display: flex;
+				justify-content: space-between;
+			}
+			&__total-price {
+				color: #483EFF;
+				font-size: 20px;
+				font-family: Ubuntu-Bold;
 			}
 		}
 	}
