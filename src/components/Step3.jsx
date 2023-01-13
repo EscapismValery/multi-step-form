@@ -8,6 +8,27 @@ import NextButton from './NextButton';
 import PrevButton from './PrevButton';
 
 const Step3 = () => {
+	const addonsList = [
+		{
+			id: 1,
+			title: "Online service",
+			description: "Access to multiplayer games",
+			price: 1,
+		},
+		{
+			id: 2,
+			title: "Larger storage",
+			description: "Extra 1TB of cloud save",
+			price: 2,
+		},
+		{
+			id: 3,
+			title: "Customizable Profile",
+			description: "Custom theme on your profile",
+			price: 2,
+		},
+	];
+
 	const navigate = useNavigate();
 
 	const { data, setValues } = useData();
@@ -26,12 +47,6 @@ const Step3 = () => {
 	const PrevStep = () => {
 		navigate("/step2");
 	}
-	console.log(data)
-	const ShowActive = (num) => {
-		const addonsItems = document.querySelectorAll('.addons-form__item');
-		const addonsItemCheck = addonsItems[num].querySelector('.addons-form__check').checked;
-		addonsItemCheck ? addonsItems[num].classList.add('active') : addonsItems[num].classList.remove('active');
-	}
 	return (
 		<CardForm active={3}>
 			<div className="cardform__container">
@@ -42,61 +57,61 @@ const Step3 = () => {
 				>
 					<div className='form__container'>
 						<div className="form__addons addons-form">
-							<label>
+							<label className='addons-form__label'>
 								<input
 									{...register('addons')}
 									type="checkbox"
 									name='addons'
 									className='addons-form__check'
-									defaultValue="Online service"
+									defaultValue={addonsList[0].title + "," + addonsList[0].price * (data.periodTime === "yr" ? 10 : 1)}
 								/>
-								<div className="addons-form__item" onChange={e => ShowActive(0)}>
+								<div className="addons-form__item">
 									<div className='addons-form__item-container'>
 										<span className='addons-form__mark'></span>
 										<div className="addons-form__text">
-											<h4 className='addons-form__title'>Online service</h4>
-											<p className="addons-form__desc">Access to multiplayer games</p>
+											<h4 className='addons-form__title'>{addonsList[0].title}</h4>
+											<p className="addons-form__desc">{addonsList[0].description}</p>
 										</div>
 									</div>
-									<p className="addons-form__price">+$1/mo</p>
+									<p className="addons-form__price">+${addonsList[0].price}{data.periodTime === "yr" ? "0" : ""}/{data.periodTime}</p>
 								</div>
 							</label>
-							<label>
+							<label className='addons-form__label'>
 								<input
 									{...register('addons')}
 									type="checkbox"
 									name='addons'
 									className='addons-form__check'
-									defaultValue="Larger storage"
+									defaultValue={addonsList[1].title + "," + addonsList[1].price * (data.periodTime === "yr" ? 10 : 1)}
 								/>
-								<div className="addons-form__item" onChange={e => ShowActive(1)}>
+								<div className="addons-form__item">
 									<div className='addons-form__item-container'>
 										<span className='addons-form__mark'></span>
 										<div className="addons-form__text">
-											<h4 className='addons-form__title'>Larger storage</h4>
-											<p className="addons-form__desc">Extra 1TB of cloud save</p>
+											<h4 className='addons-form__title'>{addonsList[1].title}</h4>
+											<p className="addons-form__desc">{addonsList[1].description}</p>
 										</div>
 									</div>
-									<p className="addons-form__price">+$2/mo</p>
+									<p className="addons-form__price">+${addonsList[1].price}{data.periodTime === "yr" ? "0" : ""}/{data.periodTime}</p>
 								</div>
 							</label>
-							<label>
+							<label className='addons-form__label'>
 								<input
 									{...register('addons')}
 									type="checkbox"
 									name='addons'
 									className='addons-form__check'
-									defaultValue="Customizable Profile"
+									defaultValue={addonsList[2].title + "," + addonsList[2].price * (data.periodTime === "yr" ? 10 : 1)}
 								/>
-								<div className="addons-form__item" onChange={e => ShowActive(2)}>
+								<div className="addons-form__item">
 									<div className='addons-form__item-container'>
 										<span className='addons-form__mark'></span>
 										<div className="addons-form__text">
-											<h4 className='addons-form__title'>Customizable Profile</h4>
-											<p className="addons-form__desc">Custom theme on your profile</p>
+											<h4 className='addons-form__title'>{addonsList[2].title}</h4>
+											<p className="addons-form__desc">{addonsList[2].description}</p>
 										</div>
 									</div>
-									<p className="addons-form__price">+$2/mo</p>
+									<p className="addons-form__price">+${addonsList[2].price}{data.periodTime === "yr" ? "0" : ""}/{data.periodTime}</p>
 								</div>
 							</label>
 						</div>

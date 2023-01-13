@@ -18,6 +18,16 @@ const Result = () => {
 	});
 
 	const NextStep = () => {
+		alert(`
+			Name: ${data.formName},
+			Email:  ${data.email},
+			Phone number:  ${data.phone},
+			Options:
+			Plan: ${data.plan},
+			Additional services: ${data.addons[0] ? data.addons[0].split(',')[0] : "None"}${data.addons[1] ? ", " + data.addons[1].split(',')[0] : ""}${data.addons[2] ? ", " + data.addons[2].split(',')[0] : ""},
+			Period: ${data.periodTime === "mo" ? "Monthly" : "Yearly"},
+			Total price: ${count}
+		`)
 		navigate("/finish");
 	}
 	const PrevStep = () => {
@@ -27,7 +37,14 @@ const Result = () => {
 		e.preventDefault();
 		navigate("/");
 	}
-	console.log(data)
+
+	var count = 0;
+	count += data.periodPrice[data.numberPlan];
+	data.addons && data.addons.forEach((item) => {
+		const num = +item.split(',')[1];
+		count += num;
+	})
+
 	return (
 		<CardForm active={4}>
 			<div className="cardform__container">
@@ -41,35 +58,35 @@ const Result = () => {
 							<div className="result-form__data">
 								<div className="result-form__plan">
 									<div className="result-form__plan-info">
-										<h4 className="result-form__title">{data.plan} ({data.period})</h4>
+										<h4 className="result-form__title">{data.plan} ({data.periodTime === "mo" ? "Monthly" : "Yearly"})</h4>
 										<button className="result-form__change" type='button' onClick={e => StartStep(e)}>Change</button>
 									</div>
-									<p className="result-form__plan-price">${data.periodPrice}/{data.periodTime}</p>
+									<p className="result-form__plan-price">${data.periodPrice[data.numberPlan]}/{data.periodTime}</p>
 								</div>
 								<div className="result-form__addons">
 									{data.addons[0] ?
 										<div className="result-form__addons-item">
-											<h4 className="result-form__text">{data.addons[0]}</h4>
-											<p className="result-form__addons-price">+$1/mo</p>
+											<h4 className="result-form__text">{data.addons[0].split(',')[0]}</h4>
+											<p className="result-form__addons-price">+${data.addons[0].split(',')[1]}/{data.periodTime}</p>
 										</div>
 										: ""}
 									{data.addons[1] ?
 										<div className="result-form__addons-item">
-											<h4 className="result-form__text">{data.addons[1]}</h4>
-											<p className="result-form__addons-price">+$2/mo</p>
+											<h4 className="result-form__text">{data.addons[1].split(',')[0]}</h4>
+											<p className="result-form__addons-price">+${data.addons[1].split(',')[1]}/{data.periodTime}</p>
 										</div>
 										: ""}
 									{data.addons[2] ?
 										<div className="result-form__addons-item">
-											<h4 className="result-form__text">{data.addons[2]}</h4>
-											<p className="result-form__addons-price">+$2/mo</p>
+											<h4 className="result-form__text">{data.addons[2].split(',')[0]}</h4>
+											<p className="result-form__addons-price">+${data.addons[2].split(',')[1]}/{data.periodTime}</p>
 										</div>
 										: ""}
 								</div>
 							</div>
 							<div className="result-form__total">
-								<h4 className="result-form__text">Total</h4>
-								<p className="result-form__total-price">+$12/mo</p>
+								<h4 className="result-form__text">Total ({data.periodTime})</h4>
+								<p className="result-form__total-price">+${count}/{data.periodTime}</p>
 							</div>
 						</div>
 					</div>
