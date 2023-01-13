@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ceef87e8.css",
+    "main.js": "/static/js/main.30d244e8.js",
+    "static/media/Ubuntu-Regular.ttf": "/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
+    "static/media/Ubuntu-Medium.ttf": "/static/media/Ubuntu-Medium.e37c5546eb1a6efc4818.ttf",
+    "static/media/Ubuntu-Bold.ttf": "/static/media/Ubuntu-Bold.fec2d0f1431a6114a6ce.ttf",
+    "static/media/bg-sidebar-desktop.svg": "/static/media/bg-sidebar-desktop.6918153f38678372ceb1.svg",
+    "static/media/icon-advanced.svg": "/static/media/icon-advanced.705bd10c4c1f688871d7.svg",
+    "static/media/icon-pro.svg": "/static/media/icon-pro.2e7e377da9c658d60862.svg",
+    "static/media/icon-arcade.svg": "/static/media/icon-arcade.a08c098289a31bb2f66d.svg",
+    "index.html": "/index.html",
+    "static/media/icon-checkmark.svg": "/static/media/icon-checkmark.6ba72db67010be44885b.svg",
+    "main.ceef87e8.css.map": "/static/css/main.ceef87e8.css.map",
+    "main.30d244e8.js.map": "/static/js/main.30d244e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ceef87e8.css",
+    "static/js/main.30d244e8.js"
+  ]
+}
