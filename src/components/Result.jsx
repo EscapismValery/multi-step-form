@@ -85,7 +85,7 @@ const Result = () => {
 								</div>
 							</div>
 							<div className="result-form__total">
-								<h4 className="result-form__text">Total ({data.periodTime})</h4>
+								<h4 className="result-form__text">Total (per {data.periodTime === "mo" ? "month" : "year"})</h4>
 								<p className="result-form__total-price">+${count}/{data.periodTime}</p>
 							</div>
 						</div>

@@ -16,34 +16,53 @@
 /* ----------- Контейнер со всем содержимым ----------- */
 .cardform {
 	display: flex;
-	width: 940px;
+	@include adaptive("width", 940, 500, "px");
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 13px;
+	@media screen and (max-width: 767px) {
+		flex-direction: column;
+		background-color: transparent;
+	}
 	&__container {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		width: 450px;
+		@include adaptive("width", 450, 260, "px");
+		// width: 450px;
 		margin: 20px auto;
+		@include adaptive("margin-top", 20, 10, "px");
+		@include adaptive("margin-bottom", 20, 10, "px");
+		@media screen and (max-width: 767px) {
+			background-color: #fff;
+		}
 	}
 }
 /* ----------- Контейнер боковой навигации ----------- */
 .sidebar {
-	width: 275px;
-	height: 568px;
-	padding: 30px;
-	background: url("./images/bg-sidebar-desktop.svg") no-repeat;
+	@include adaptive("width", 275, 180, "px");
+	@include adaptive("height", 568, 280, "px");
+	// width: 275px;
+	// height: 568px;
+	@include adaptive("padding", 30, 16, "px");
+	// padding: 30px;
+	background: url("./images/bg-sidebar-desktop.svg") no-repeat 50% 50%;
+	background-size: cover;
+	border-radius: 10px;
 }
 .step {
 	display: flex;
 	align-items: center;
-	gap: 15px;
-	margin-bottom: 30px;
+	// gap: 15px;
+	@include adaptive("gap", 15, 8, "px");
+	@include adaptive("margin-bottom", 30, 15, "px");
+	// margin-bottom: 30px;
 	color: #fff;
 	&__number {
-		width: 33px;
-		height: 33px;
+		@include adaptive("width", 33, 24, "px");
+		@include adaptive("height", 33, 24, "px");
+		// width: 33px;
+		// height: 33px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -56,13 +75,15 @@
 		border: 1px solid #BFE2FD;
 		color: #000;
 	}
-	&__text {	
-		height: 33px;
+	&__text {
+		@include adaptive("height", 33, 22, "px");	
+		// height: 33px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		text-transform: uppercase;
-		font-size: 0.9em;
+		// font-size: 0.9em;
+		@include adaptive("font-size", 14, 8, "px");
 		line-height: 1;
 	}
 	&__id {
@@ -88,48 +109,63 @@
 		height: 100%;
 	}
 	&__title {
-		margin-top: 15px;
-		margin-bottom: 10px;
+		@include adaptive("margin-top", 15, 5, "px");
+		@include adaptive("margin-bottom", 10, 5, "px");
+		// margin-top: 15px;
+		// margin-bottom: 10px;
 		font-family: Ubuntu-Bold;
-		font-size: 32px;
+		@include adaptive("font-size", 32, 16, "px");
+		// font-size: 32px;
 		color:#03295A;
 	}
 	&__text {
 		color: #9699AB;
 		font-family: Ubuntu-Regular;
-		font-size: 16px;
+		@include adaptive("font-size", 16, 10, "px");
+		// font-size: 16px;
 		line-height: 1.5;
-		margin-bottom: 30px;
+		@include adaptive("margin-bottom", 30, 2, "px");
+		// margin-bottom: 30px;
 	}
 	&__content {
 		display: flex;
 		flex-direction: column;
-		gap: 25px;
+		@include adaptive("gap", 25, 10, "px");
+		// gap: 25px;
 	}
 	/* --- Стили для label и input на 1 странице --- */
 	&__label {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		@include adaptive("gap", 10, 2, "px");
+		// gap: 10px;
 		&-text {
 			display: flex;
 			justify-content: space-between;
 		}
 		&-title {
 			color: #03295A;
-			font-size: 14px;
+			@include adaptive("font-size", 14, 8, "px");
+			// font-size: 14px;
 		}
 		&-error {
 			color: #D63954;
 			font-family: Ubuntu-Bold;
-			font-size: 14px;
+			@include adaptive("font-size", 14, 8, "px");
+			// font-size: 14px;
 		}
 	}
 	&__input {
 		border: 1px solid #D9D8DD;
-		border-radius: 10px;
-		padding: 13px 15px;
-		font-size: 16px;
+		@include adaptive("border-radius", 10, 4, "px");
+		// border-radius: 10px;
+		// padding: 13px 15px;
+		@include adaptive("padding-top", 13, 5, "px");
+		@include adaptive("padding-bottom", 13, 5, "px");
+		@include adaptive("padding-left", 15, 7, "px");
+		@include adaptive("padding-right", 15, 7, "px");
+		@include adaptive("font-size", 16, 10, "px");
+		// font-size: 16px;
 		color: #03295A;
 	}
 	&__input:focus {
@@ -146,26 +182,36 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: 1fr;
-		grid-column-gap: 18px;
+		@include adaptive("grid-column-gap", 18, 12, "px");
+		// grid-column-gap: 18px;
 		& .plan-form {
 			&__item {
-				padding: 100px 15px 15px 15px;
+				@include adaptive("padding", 15, 8, "px");
+				@include adaptive("padding-top", 100, 70, "px");
+				// padding: 100px 15px 15px 15px;
 				border: 1px solid #DBDBDD;
 				background-color: #fff;
 				border-radius: 10px;
 				cursor: pointer;
 				display: flex;
 				flex-direction: column;
-				gap: 10px;
+				@include adaptive("gap", 10, 4, "px");
+				// gap: 10px;
 				transition: all .2s ease;
 				&-arcade {
-					background: url("./images/icon-arcade.svg") no-repeat 15px 15px;
+					background: url("./images/icon-arcade.svg") no-repeat;
+					@include adaptive("background-position-x", 15, 8, "px");
+					@include adaptive("background-position-y", 15, 8, "px");
 				}
 				&-advanced {
-					background: url("./images/icon-advanced.svg") no-repeat 15px 15px;
+					background: url("./images/icon-advanced.svg") no-repeat;
+					@include adaptive("background-position-x", 15, 8, "px");
+					@include adaptive("background-position-y", 15, 8, "px");
 				}
 				&-pro {
-					background: url("./images/icon-pro.svg") no-repeat 15px 15px;
+					background: url("./images/icon-pro.svg") no-repeat;
+					@include adaptive("background-position-x", 15, 8, "px");
+					@include adaptive("background-position-y", 15, 8, "px");
 				}
 			}
 			&__item:hover {
@@ -184,15 +230,18 @@
 			&__title {
 				color: #03295A;
 				font-family: Ubuntu-Bold;
-				font-size: 16px;
+				@include adaptive("font-size", 16, 10, "px");
+				// font-size: 16px;
 			}
 			&__price {
 				color: #9699AB;
-				font-size: 14px;
+				@include adaptive("font-size", 14, 8, "px");
+				// font-size: 14px;
 			}
 			&__free {
 				color: #03295A;
-				font-size: 12px;
+				@include adaptive("font-size", 12, 6, "px");
+				// font-size: 12px;
 				display: none;
 			}
 			&__free.active {
@@ -203,10 +252,13 @@
 	&__plan-period {
 		display: flex;
 		justify-content: center;
-		gap: 20px;
+		@include adaptive("gap", 20, 10, "px");
+		// gap: 20px;
 		width: 100%;
-		margin-top: 30px;
-		padding: 15px;
+		@include adaptive("margin-top", 30, 12, "px");
+		// margin-top: 30px;
+		@include adaptive("padding", 15, 8, "px");
+		// padding: 15px;
 		background-color: #F8F9FE;
 		border-radius: 10px;
 		& .plan-period {
@@ -218,6 +270,8 @@
 				display: flex;
 				height: 100%;
 				align-items: center;
+				@include adaptive("font-size", 15, 9, "px");
+				// font-size: 16px;
 			}
 			&__radio {
 				width: 0;
@@ -235,8 +289,10 @@
 				opacity: 0;
 			}
 			&__switch {
-				width: 40px;
-				height: 20px;
+				@include adaptive("width", 40, 30, "px");
+				// width: 40px;
+				@include adaptive("height", 20, 15, "px");
+				// height: 20px;
 				background-color: #03295A;
 				border-radius: 100px;
 				position: relative;
@@ -245,16 +301,21 @@
 			&__switch:before {
 				content: "";
 				position: absolute;
-				top: 4px;
-				left: 4px;
-				width: 12px;
-				height: 12px;
+				@include adaptive("top", 4, 3, "px");
+				@include adaptive("left", 4, 3, "px");
+				// top: 4px;
+				// left: 4px;
+				@include adaptive("width", 12, 9, "px");
+				@include adaptive("height", 12, 9, "px");
+				// width: 12px;
+				// height: 12px;
 				background-color: #fff;
 				border-radius: 100px;
 				transition: left .2s ease;
 			}
 			&__check:checked + .plan-period__switch:before {
-				left: 24px;
+				@include adaptive("left", 24, 18, "px");
+				// left: 24px;
 			}
 		}
 	}
@@ -262,16 +323,19 @@
 	&__addons {
 		display: flex;
 		flex-direction: column;
-		gap: 15px;
+		@include adaptive("gap", 15, 8, "px");
+		// gap: 15px;
 		& .addons-form {
 			&__item {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				padding: 20px;
+				@include adaptive("padding", 20, 12, "px");
+				// padding: 20px;
 				border: 1px solid #DBDADF;
 				border-radius: 10px;
-				height: 80px;
+				@include adaptive("height", 80, 46, "px");
+				// height: 80px;
 				cursor: pointer;
 				transition: all .2s ease;
 			}
@@ -288,12 +352,15 @@
 				height: 100%;
 			}
 			&__mark {
-				width: 20px;
-				height: 20px;
+				@include adaptive("width", 20, 16, "px");
+				@include adaptive("height", 20, 16, "px");
+				// width: 20px;
+				// height: 20px;
 				background: transparent;
 				border: 1px solid #E1E0E5;
 				border-radius: 4px;
-				margin-right: 20px;
+				@include adaptive("margin-right", 20, 16, "px");
+				// margin-right: 20px;
 				align-self: center;
 			}
 			&__text {
@@ -305,14 +372,17 @@
 			&__title {
 				color: #03295A;
 				font-family: Ubuntu-Bold;
-				font-size: 16px;
+				@include adaptive("font-size", 16, 10, "px");
+				// font-size: 16px;
 			}
 			&__desc {
 				color: #9699AB;
-				font-size: 14px;
+				@include adaptive("font-size", 14, 8, "px");
+				// font-size: 14px;
 			}
 			&__price {
 				color: #524E9B;
+				@include adaptive("font-size", 15, 9, "px");
 			}
 			&__check {
 				width: 0;
@@ -334,14 +404,19 @@
 			display: flex;
 			flex-direction: column;
 			&__data {
-				padding: 25px 20px;
+				@include adaptive("padding-top", 25, 10, "px");
+				@include adaptive("padding-bottom", 25, 10, "px");
+				@include adaptive("padding-left", 20, 10, "px");
+				@include adaptive("padding-right", 20, 10, "px");
+				// padding: 25px 20px;
 				background-color: #F8F9FE;
 			}
 			&__plan {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				margin-bottom: 25px;
+				// margin-bottom: 25px;
+				@include adaptive("margin-bottom", 25, 15, "px");
 				&-info {
 					display: flex;
 					flex-direction: column;
@@ -351,25 +426,34 @@
 				&-price {
 					color: #052857;
 					font-family: Ubuntu-Bold;
-					font-size: 18px;
+					@include adaptive("font-size", 18, 12, "px");
+					// font-size: 18px;
 				}
 			}
 			&__title {
 				color: #052857;
 				font-family: Ubuntu-Bold;
-				font-size: 18px;
+				@include adaptive("font-size", 18, 12, "px");
+				// font-size: 18px;
+			}
+			&__text {
+				@include adaptive("font-size", 16, 10, "px");
+				// font-size: 16px;
 			}
 			&__change {
 				color: #9999A3;
 				text-decoration: underline;
 				background: none;
-				font-size: 16px;
+				@include adaptive("font-size", 16, 10, "px");
+				// font-size: 16px;
 			}
 			&__addons {
 				display: flex;
 				flex-direction: column;
-				gap: 25px;
-				padding-top: 25px;
+				@include adaptive("gap", 25, 15, "px");
+				// gap: 25px;
+				@include adaptive("padding-top", 25, 15, "px");
+				// padding-top: 25px;
 				border-top: 1px solid #E7E8ED;
 			}
 			&__addons-item {
@@ -378,19 +462,24 @@
 			}
 			&__addons-price {
 				color: #052857;
-				font-size: 16px;
+				@include adaptive("font-size", 16, 10, "px");
+				// font-size: 16px;
 			}
 			&__text {
 				color: #9999A3;
 			}
 			&__total {
-				padding: 25px 20px;
+				@include adaptive("padding-top", 25, 10, "px");
+				@include adaptive("padding-bottom", 25, 10, "px");
+				@include adaptive("padding-left", 20, 10, "px");
+				@include adaptive("padding-right", 20, 10, "px");
 				display: flex;
 				justify-content: space-between;
 			}
 			&__total-price {
 				color: #483EFF;
-				font-size: 20px;
+				@include adaptive("font-size", 20, 14, "px");
+				// font-size: 20px;
 				font-family: Ubuntu-Bold;
 			}
 		}
@@ -404,7 +493,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
+		@include adaptive("gap", 20, 10, "px");
 		&__text {
 			text-align: center;
 		}
@@ -417,11 +506,16 @@
 	display: flex;
 	justify-content: space-between;
 	& button {
-		font-size: 16px;
+		@include adaptive("font-size", 16, 10, "px");
+		// font-size: 16px;
 	}
 }
 .button {
-	padding: 15px 30px;
+	@include adaptive("padding-top", 15, 9, "px");
+	@include adaptive("padding-bottom", 15, 9, "px");
+	@include adaptive("padding-left", 30, 20, "px");
+	@include adaptive("padding-right", 30, 20, "px");
+	// padding: 15px 30px;
 	border-radius: 6px;
 	color: #fff;
 }
